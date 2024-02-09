@@ -1,5 +1,6 @@
 import { Inter_900Black } from "@expo-google-fonts/inter";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { Link } from "expo-router";
 
 type DayListItem = {
   data: number;
@@ -7,9 +8,11 @@ type DayListItem = {
 
 function DayListItem({ data }: DayListItem) {
   return (
-    <View style={styles.box}>
-      <Text style={styles.text}>{data}</Text>
-    </View>
+    <Link href={`/day${data}`} asChild>
+      <Pressable style={styles.box}>
+        <Text style={styles.text}>{data}</Text>
+      </Pressable>
+    </Link>
   );
 }
 

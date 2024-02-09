@@ -6,7 +6,7 @@ import {
   FlatList,
   ActivityIndicator,
 } from "react-native";
-import DayListItem from "./src/components/core/DayListItem";
+import DayListItem from "../components/DayListItem";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
 import * as SplashScreen from "expo-splash-screen";
 import {
