@@ -9,8 +9,8 @@ type DayListItem = {
 function DayListItem({ data }: DayListItem) {
   return (
     <Link href={`/day${data}`} asChild>
-      <Pressable style={styles.box}>
-        <Text style={styles.text}>{data}</Text>
+      <Pressable style={styles.box} android_disableSound={true}>
+        <Text style={styles.text}>Day -{data}</Text>
       </Pressable>
     </Link>
   );

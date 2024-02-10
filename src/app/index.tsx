@@ -13,7 +13,6 @@ import DayListItem from "../components/DayListItem";
   export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 20 }}>Calendar</Text>
       <FlatList
         contentContainerStyle={styles.content}
         numColumns={2}
@@ -32,7 +31,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingVertical: 20,
   },
   content: {
     gap: 10,
