@@ -9,7 +9,18 @@ import {
 import { Stack, Link, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-
+import {
+  GestureDetector,
+  Gesture,
+  Directions,
+} from "react-native-gesture-handler";
+import {
+  SlideInRight,
+  SlideOutLeft,
+  FadeIn,
+  FadeOut,
+} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 const onboardingSteps = [
   {
     title: "Order in the mobile app",
@@ -29,6 +40,11 @@ const onboardingSteps = [
 ];
 
 export default function Onboarding() {
+  const swipeForward = Gesture.Fling();
+  // .onEnd((event) => {
+  //   console.log(event);
+  // });
+
   const [screenIndex, setScreenIndex] = useState(0);
   const data = onboardingSteps[screenIndex];
 
@@ -38,10 +54,21 @@ export default function Onboarding() {
     }
     setScreenIndex(screenIndex + 1);
   };
+  const onBack = () => {
+    if (screenIndex === 0) {
+      endOnboarding();
+    }
+    setScreenIndex(screenIndex - 1);
+  };
+
+  const swipes = Gesture.Simultaneous(
+    Gesture.Fling().direction(Directions.LEFT).onEnd(onContinue),
+    Gesture.Fling().direction(Directions.RIGHT).onEnd(onBack)
+  );
 
   const endOnboarding = () => {
-    setScreenIndex(0);
     router.back();
+    setScreenIndex(0);
   };
 
   return (
@@ -62,19 +89,28 @@ export default function Onboarding() {
             ></View>
           ))}
         </View>
-        <View
-          style={{
-            width: "100%",
-            height: "89%",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Image style={styles.image} source={data.image} />
-          <Text style={styles.headingText}>{data.title}</Text>
-          <Text style={styles.text}>{data.description}</Text>
-        </View>
-
+        <GestureDetector gesture={swipes}>
+          <Animated.View
+            entering={SlideInRight}
+            exiting={SlideOutLeft}
+            style={{
+              width: "100%",
+              height: "89%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            key={screenIndex}
+          >
+            <Animated.Image
+              entering={FadeIn.delay(150)}
+              exiting={FadeOut}
+              style={styles.image}
+              source={data.image}
+            />
+            <Text style={styles.headingText}>{data.title}</Text>
+            <Animated.Text entering={SlideInRight.delay(150)} style={styles.text}>{data.description}</Animated.Text>
+          </Animated.View>
+        </GestureDetector>
         <View style={styles.buttonContainer}>
           <Text
             onPress={endOnboarding}

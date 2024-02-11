@@ -7,6 +7,8 @@ import {
   AmaticSC_700Bold,
 } from "@expo-google-fonts/amatic-sc";
 import { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+
 SplashScreen.preventAutoHideAsync();
 
 function RootLayout() {
@@ -27,15 +29,17 @@ function RootLayout() {
     return null;
   }
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: { backgroundColor: "skyblue" },
-        headerTitleAlign: "center",
-        headerShadowVisible: true,
-      }}
-    >
-      <Stack.Screen name="index" options={{ title: "Home" }} />
-    </Stack>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: "skyblue" },
+          headerTitleAlign: "center",
+          headerShadowVisible: true,
+        }}
+      >
+        <Stack.Screen name="index" options={{ title: "Home" }} />
+      </Stack>
+    </GestureHandlerRootView>
   );
 }
 

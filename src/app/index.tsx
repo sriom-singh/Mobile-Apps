@@ -8,22 +8,22 @@ import {
 } from "react-native";
 import DayListItem from "../components/DayListItem";
 
-  const days = [...Array(24)].map((val, index) => index + 1);
-  
-  export default function App() {
-  return (
-    <View style={styles.container}>
-      <FlatList
-        contentContainerStyle={styles.content}
-        numColumns={2}
-        columnWrapperStyle={styles.column}
-        data={days}
-        renderItem={({ item }) => <DayListItem data={item} />}
-        // horizontal
-      />
+const days = [...Array(24)].map((val, index) => index + 1);
 
-      <StatusBar style="auto" />
-    </View>
+export default function App() {
+  return (
+      <View style={styles.container}>
+        <FlatList
+          contentContainerStyle={styles.content}
+          numColumns={2}
+          columnWrapperStyle={styles.column}
+          data={days}
+          renderItem={({ item }) => <DayListItem data={item} />}
+          // horizontal
+        />
+
+        <StatusBar style="auto" />
+      </View>
   );
 }
 
