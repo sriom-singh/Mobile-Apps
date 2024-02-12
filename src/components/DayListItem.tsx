@@ -5,12 +5,41 @@ import { Link } from "expo-router";
 type DayListItem = {
   data: number;
 };
-
+const titles = [
+  "Setting up Project",
+  "Onboarding Screen",
+  "Markdown Editor",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+  "Title ",
+];
 function DayListItem({ data }: DayListItem) {
   return (
     <Link href={`/day${data}`} asChild>
       <Pressable style={styles.box} android_disableSound={true}>
         <Text style={styles.text}>Day -{data}</Text>
+        <Text style={styles.title}>{titles[data - 1]}</Text>
       </Pressable>
     </Link>
   );
@@ -30,6 +59,9 @@ const styles = StyleSheet.create({
     fontFamily: "AmaticBold",
     color: "#9b4521",
     fontSize: 50,
+  },
+  title: {
+    fontSize: 16,
   },
 });
 
